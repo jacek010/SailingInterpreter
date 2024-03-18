@@ -1,8 +1,7 @@
 from antlr4 import *
-
-from gen.SailingCommandsLexer import SailingCommandsLexer
-from SailingCommandsParser import SailingCommandsParser
-from SailingCommandsVisitor import SailingCommandsVisitor
+from gen.grammar.SailingCommandsLexer import SailingCommandsLexer
+from gen.grammar.SailingCommandsParser import SailingCommandsParser
+from gen.grammar.SailingCommandsVisitor import SailingCommandsVisitor
 
 
 class CommandVisitor(SailingCommandsVisitor):

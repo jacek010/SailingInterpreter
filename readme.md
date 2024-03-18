@@ -3,4 +3,4 @@
 ## How to compile g4 file
 Type command:
 
-`antlr4 -v 4.13.1 -Dlanguage=Python3 -visitor -o gen SailingCommands.g4` 
+`antlr4 -v 4.13.0 -Dlanguage=Python3 -visitor -o gen SailingCommands.g4` 
