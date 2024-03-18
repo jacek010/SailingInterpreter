@@ -16,15 +16,19 @@ class CommandVisitor(SailingCommandsVisitor):
 
 
 def main():
-    input_str = "cała wstecz"  # Przykładowe polecenia do przetworzenia
-    input_stream = InputStream(input_str)
-    lexer = SailingCommandsLexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    parser = SailingCommandsParser(stream)
-    tree = parser.command()
-    visitor = CommandVisitor()
-    commands = visitor.visit(tree)
-    print("Commands:", commands)
+    try:
+        with open("input.txt", 'r') as file:
+            for line in file:
+                input_stream = InputStream(line.strip())
+                lexer = SailingCommandsLexer(input_stream)
+                stream = CommonTokenStream(lexer)
+                parser = SailingCommandsParser(stream)
+                tree = parser.command()
+                visitor = CommandVisitor()
+                commands = visitor.visit(tree)
+                print("Commands:", commands)
+    except FileNotFoundError:
+        return Exception
 
 
 if __name__ == "__main__":
