@@ -5,7 +5,9 @@ prog: stat* EOF;
 stat: command;
 
 // Reguły parsera
-command : amount SPACE direction ;
+command : amount SPACE direction
+        | direction SPACE amount
+;
 direction : FORWARD | BACKWARD ;
 amount : PERCENT | FULL ;
 
