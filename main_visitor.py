@@ -1,7 +1,7 @@
 from antlr4 import *
-from gen.grammar.SailingCommandsLexer import SailingCommandsLexer
-from gen.grammar.SailingCommandsParser import SailingCommandsParser
-from gen.grammar.SailingCommandsVisitor import SailingCommandsVisitor
+from gen.SailingCommandsLexer import SailingCommandsLexer
+from gen.SailingCommandsParser import SailingCommandsParser
+from gen.SailingCommandsVisitor import SailingCommandsVisitor
 
 
 class CommandVisitor(SailingCommandsVisitor):
@@ -33,6 +33,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
