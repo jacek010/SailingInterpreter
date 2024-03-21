@@ -9,7 +9,6 @@ stat: command;
 // Reguły parsera
 command : amount SPACE direction
         | direction SPACE amount
-        |
 ;
 
 direction : FORWARD | BACKWARD | BACKSTAY;
