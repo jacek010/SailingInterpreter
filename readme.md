@@ -14,9 +14,37 @@ Insert commands  by adding them to `input.txt` file
 ## List of commands
 A list of words from naval commands in Polish:
 
-alarm - alarm
+**Speed**
+- silnik - silnik (słowo kluczowe przed podaniem prędkości)
+- awaryjna - na 100% mocy
+- cała - na 80% mocy
+- manewrowa - na 60% mocy
+- pół - na 40% mocy
+- wolna - na 20% mocy
 
-awaryjna - na 100% mocy
+**Direction**
+- ster - ster (słowo kluczowe przed podaniem kierunku)
+- lewo - w lewo na 50%
+- lewo na burt - maksymanie w lewo (na 100%)
+- prawo - w prawo na 50%
+- prawo na burt - maksymalnie w prawo (na 100%)
+- ostrzyć - sterować łodzią bardziej pod wiatr
+- odpadać - sterować łodzią bardziej z wiatrem
+
+
+
+**Sails commands**
+- żagle - żagle (słowo kluczowe przed podaniem polecenia do żagli)
+- do zwrotu przez rufę - przygotować się do zwrotu pod wiatr
+- do zwrotu przez sztag - przygotować się do zwrotu z wiatrem
+- kotwicę wybieraj - wyciągnij kotwicę
+- staw - postaw w górę
+
+
+
+**Others (unsupported)**
+
+alarm - alarm
 
 bardziej - bardziej
 
@@ -31,8 +59,6 @@ burtą - burtą
 burtę - burtę
 
 burty - burty
-
-cała - na 80% mocy
 
 chroń - ubezpieczej
 
@@ -63,10 +89,6 @@ do linii wiatru - sterować łodzią równolegle pod wiatr
 do łodzi - wejść do łodzi
 
 do półwiatru - sterować łodzią prostopadle do wiatru
-
-do zwrotu przez rufę - przygotować się do zwrotu pod wiatr
-
-do zwrotu przez sztag - przygotować się do zwrotu z wiatrem
 
 dość - przestać
 
@@ -100,8 +122,6 @@ kop - przygazować
 
 kotwicę - kotwicę i linę kotwiczną
 
-kotwicę wybieraj - wyciągnij kotwicę
-
 Kula na sztag. - Ustawienie dziennego sygnału postojowego.
 
 lekko - lekko
@@ -110,10 +130,6 @@ lewa - z lewej burty
 
 lewej - lewej
 
-lewo - w lewo
-
-lewo na burt - maksymanie w lewo
-
 lewo na wodę - ma mieć wodę z lewej strony
 
 lewy - lewy/lewą
@@ -121,8 +137,6 @@ lewy - lewy/lewą
 luz - poluzuj do końca
 
 luzuj - poluzuj częściowo
-
-manewrowa - na 60% mocy
 
 maszt - maszt
 
@@ -162,11 +176,9 @@ oddaj - oddaj
 
 oddania - podania
 
-odpadać - sterować łodzią bardziej z wiatrem
-
 odstaw - wyłączyć i zabezpieczyć
 
-ostrzyć - sterować łodzią bardziej pod wiatr
+
 
 pod - pod
 
@@ -184,13 +196,7 @@ pomocy - pomocy
 
 postawienia - postawienia
 
-pół - na 40% mocy
-
 prawa - z prawej burty
-
-prawo - w prawo
-
-prawo na burt - maksymalnie w prawo
 
 prawo na wodę - ma mieć wodę z prawej strony
 
@@ -218,8 +224,6 @@ rzuć - opuśić za burtę
 
 się - się
 
-silnik - silnik
-
 sklarować - przygotować do schowania
 
 skróć - przesunąć na trzymakach do wnętrza łodzi i oprzeć rękojeścią o drugą burtę
@@ -227,8 +231,6 @@ skróć - przesunąć na trzymakach do wnętrza łodzi i oprzeć rękojeścią o
 spław - trzymać wewnętrzną ręką poza burtą, zwrócone rękojeścią ku dziobowi
 
 stanowiska - stanowiska
-
-staw - postaw w górę
 
 stawienia - postawienia w górę
 
@@ -260,7 +262,7 @@ wiosła chwyć - przygotować trzymaki do wioseł i ustawić wiosła prostopadle
 
 wiosła na wiatr - wiosła prostopadle do wody
 
-wolna - na 20% mocy
+
 
 wstecz - do tyłu
 
@@ -286,4 +288,4 @@ złożenia - złożenia
 
 zrzucenia - zrzucenia w dół
 
-żagle - żagle
+
