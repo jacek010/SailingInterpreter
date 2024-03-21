@@ -7,14 +7,15 @@ stat: command;
 //keywords :
 
 // Reguły parsera
-command : amount SPACE direction
-        | direction SPACE amount
+command : speed SPACE direction
+        | direction SPACE speed
 ;
 
-direction : FORWARD | BACKWARD | BACKSTAY;
-amount : HALF | FULL | EMERGENCY | MORE_ ;
-action : READY | ALARM | SECURE | LANDING ;
-objects : SIDE_0 | SIDE_1 | SIDE_2 | HAWSER | MAN_0 | MAN_1 | TO_MAN | LAND | BOARD | MAINSAIL | FORSAIL | ANCHOR_0 | LIGHT | OARS | ;
+direction : STERE | LEFT_2 | RIGHT_2 | FORWARD | BACKWARD ;
+speed : ENGINE | EMERGENCY | FULL | MANEUVERING | HALF | SLOW | STOP | BRAKE | SPEEDING ;
+maneuvering_commands : READY | MAINSAIL | FORSAIL | OARS | ANCHOR_0 | HAWSER | HAWSERS_0 | HAWSERS_1 | BOW_0 | LEFT_0 | RIGHT_0 | STERN_0 | RUN_0 | SAILS;
+others : ALARM | LIGHT | LIKE_THAT | SECURE | MAN_0 | LANDING_CREW | ENOUGH_ | BALL | HELMSMAN | PROVIDE | CREW ;
+prepositions : TO | ON | BY | AND | INTO | FOR ;
 
 // Tokeny
 ALARM : 'alarm' ;
@@ -46,7 +47,7 @@ HAWSERS_1 : 'cumach' ;
 MAN_0 : 'człowiek' ;
 MAN_1 : 'człowieka' ;
 TO_MAN : 'człowiekowi' ;
-LANDING : 'desant' ;
+LANDING_CREW : 'desant' ;
 LAND : 'ląd' ;
 BOARD : 'pokład' ;
 BACKSTAY : 'baksztagu' ;
@@ -58,8 +59,8 @@ HALF_WIND : 'half wind' ;
 ABOW : 'zwrotu' ;
 BY : 'przez' ;
 ENOUGH_ : 'dość' ;
-BOW_A : 'dziobowa' ;
-BOW : 'dziób' ;
+BOW_1 : 'dziobowa' ;
+BOW_0 : 'dziób' ;
 STRING : 'szot' ;
 TACK : 'hals' ;
 BRAKE : 'hamuj' ;
@@ -104,9 +105,9 @@ PICK_UP_0 : 'podjąć' ;
 PICK_UP_1 : 'podjęcia' ;
 HELP : 'pomocy' ;
 SET_2 : 'postawienia' ;
-RIGHT_0 : 'prawa' ;
-RIGHT_1 : 'prawo' ;
-RIGHT_2 : 'prawy' ;
+RIGHT_1 : 'prawa' ;
+RIGHT_2 : 'prawo' ;
+RIGHT_0 : 'prawy' ;
 AWAY : 'precz' ;
 RESCUE : 'ratunkowe' ;
 STERN_0 : 'rufa' ;
