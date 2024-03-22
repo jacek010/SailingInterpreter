@@ -1,2 +1,4 @@
-cała wstecz
-wstecz pół
+silnik cała wstecz
+silnik wstecz pół
+ster lewo
+ster prawo na burt

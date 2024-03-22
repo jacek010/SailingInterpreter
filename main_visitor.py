@@ -20,8 +20,8 @@ def get_amount(amount: str) -> str:
             return '0%'
 
 
-def get_direction(direction: str) -> str:
-    match direction:
+def get_stere(stere: str) -> str:
+    match stere:
         case 'lewo':
             return '-45 stopni'
         case 'lewo na burt':
@@ -35,11 +35,16 @@ def get_direction(direction: str) -> str:
 
 
 class CommandVisitor(SailingCommandsVisitor):
-    def visitCommand(self, ctx):
+    def visitSpeedCommand(self, ctx):
         direction = ctx.direction().getText()
-        amount = ctx.amount().getText()
+        amount = ctx.speed().getText()
         converted_amount = get_amount(amount)
         return f"{converted_amount} {direction}"
+
+    def visitStereCommand(self, ctx):
+        stere = ctx.stere().getText()
+        converted_stere = get_stere(stere)
+        return f"Przekręć ster o {converted_stere}"
 
 
 def main():

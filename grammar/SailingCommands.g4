@@ -4,18 +4,42 @@ prog: stat* EOF;
 
 stat: command;
 
-//keywords :
-
 // Reguły parsera
-command : speed SPACE direction
-        | direction SPACE speed
-;
+command
+    : ENGINE speedCommand
+    | STERE stereCommand
+    ;
 
-direction : STERE | LEFT_2 | RIGHT_2 | FORWARD | BACKWARD ;
-speed : ENGINE | EMERGENCY | FULL | MANEUVERING | HALF | SLOW | STOP | BRAKE | SPEEDING ;
+speedCommand
+    :   speed direction
+    |   direction speed
+    ;
+
+stereCommand
+    :    stere
+    ;
+
+//Kierunek: do przodu - na przód, do tyłu - wstecz
+direction : FORWARD | BACKWARD ;
+
+//Ster: lewo, prawo, lewo na burt, prawo na burt
+stere :LEFT | RIGHT | LEFT_FULL | RIGHT_FULL;
+
+//Prędkość/moc: awaryjna, cała, ...
+speed :EMERGENCY | FULL | MANEUVERING | HALF | SLOW | STOP | BRAKE | SPEEDING ;
+
+
 maneuvering_commands : READY | MAINSAIL | FORSAIL | OARS | ANCHOR_0 | HAWSER | HAWSERS_0 | HAWSERS_1 | BOW_0 | LEFT_0 | RIGHT_0 | STERN_0 | RUN_0 | SAILS;
 others : ALARM | LIGHT | LIKE_THAT | SECURE | MAN_0 | LANDING_CREW | ENOUGH_ | BALL | HELMSMAN | PROVIDE | CREW ;
 prepositions : TO | ON | BY | AND | INTO | FOR ;
+
+
+//Nowe tokeny
+LEFT : 'lewo';
+RIGHT : 'prawo';
+LEFT_FULL : 'lewo na burt';
+RIGHT_FULL : 'prawo na burt';
+STERE : 'ster' ;
 
 // Tokeny
 ALARM : 'alarm' ;
@@ -34,7 +58,7 @@ LIGHT : 'świetło' ;
 LIKE_THAT : 'tak' ;
 OARS : 'wiosła' ;
 OUT_OF_BOAT : 'z łodzi' ;
-EMERGENCY : 'awarynjna' ;
+EMERGENCY : 'awaryjna' ;
 MORE_ : 'bardziej' ;
 ENOUGH : 'basta' ;
 SIDE_0 : 'burta' ;
@@ -72,7 +96,6 @@ FORSTAY : 'sztag' ;
 LIGHTLY : 'lekko' ;
 LEFT_1 : 'lewej' ;
 LEFT_SIDE : 'lewa' ;
-LEFT_2 : 'lewo' ;
 SIDE_3 : 'burt' ;
 WATER : 'wodę' ;
 LEFT_0 : 'lewy' ;
@@ -106,7 +129,6 @@ PICK_UP_1 : 'podjęcia' ;
 HELP : 'pomocy' ;
 SET_2 : 'postawienia' ;
 RIGHT_1 : 'prawa' ;
-RIGHT_2 : 'prawo' ;
 RIGHT_0 : 'prawy' ;
 AWAY : 'precz' ;
 RESCUE : 'ratunkowe' ;
@@ -123,7 +145,7 @@ RAFTING : 'spław' ;
 STATIONS : 'stanowiska' ;
 SET_0 : 'staw' ;
 SET_1 : 'stawienia' ;
-STERE : 'ster' ;
+
 HELMSMAN : 'sternik' ;
 STOP : 'stop' ;
 EQUIPMENT : 'środki' ;
@@ -147,10 +169,6 @@ FOLD : 'złożenia' ;
 THROW_3 : 'zrzucenia' ;
 SAILS : 'żagle' ;
 
-
-
-
-SPACE : ' ';
 
 //NEWLINE : [\r\n]+ -> skip;
 NEWLINE : [\r\n]+ -> channel(HIDDEN);
