@@ -1,18 +1,45 @@
 from antlr4 import *
-from gen.SailingCommandsLexer import SailingCommandsLexer
-from gen.SailingCommandsParser import SailingCommandsParser
-from gen.SailingCommandsVisitor import SailingCommandsVisitor
+from gen.grammar.SailingCommandsLexer import SailingCommandsLexer
+from gen.grammar.SailingCommandsParser import SailingCommandsParser
+from gen.grammar.SailingCommandsVisitor import SailingCommandsVisitor
+
+
+def get_amount(amount: str) -> str:
+    match amount:
+        case 'awaryjna':
+            return '100%'
+        case 'cała':
+            return '80%'
+        case 'manewrowa':
+            return '60%'
+        case 'pół':
+            return '40%'
+        case 'wolna':
+            return '20%'
+        case _:
+            return '0%'
+
+
+def get_direction(direction: str) -> str:
+    match direction:
+        case 'lewo':
+            return '-45 stopni'
+        case 'lewo na burt':
+            return '-90 stopni'
+        case 'prawo':
+            return '45 stopni'
+        case 'prawo na burt':
+            return '90 stopni'
+        case _:
+            return '0 stopni'
 
 
 class CommandVisitor(SailingCommandsVisitor):
     def visitCommand(self, ctx):
         direction = ctx.direction().getText()
         amount = ctx.amount().getText()
-        if amount == 'pół':
-            amount = '40%'
-        elif amount == 'cała':
-            amount = '100%'
-        return f"{amount} {direction}"
+        converted_amount = get_amount(amount)
+        return f"{converted_amount} {direction}"
 
 
 def main():
