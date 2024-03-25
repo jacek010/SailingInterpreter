@@ -1,4 +1,12 @@
+komenda
 silnik cała wstecz
 silnik wstecz pół
+nowa komenda
 ster lewo
+ster prawo na burt
+grupuj
+silnik wstecz pół
+ster prawo na burt
+zestaw
+silnik wstecz pół
 ster prawo na burt

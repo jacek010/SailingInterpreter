@@ -4,10 +4,10 @@ prog: stat* EOF;
 
 stat: command;
 
-// Reguły parsera
 command
     : ENGINE speedCommand
     | STERE stereCommand
+    | groupCommand
     ;
 
 speedCommand
@@ -19,6 +19,10 @@ stereCommand
     :    stere
     ;
 
+groupCommand
+    :   grouping_commands
+    ;
+
 //Kierunek: do przodu - na przód, do tyłu - wstecz
 direction : FORWARD | BACKWARD ;
 
@@ -28,6 +32,7 @@ stere :LEFT | RIGHT | LEFT_FULL | RIGHT_FULL;
 //Prędkość/moc: awaryjna, cała, ...
 speed :EMERGENCY | FULL | MANEUVERING | HALF | SLOW | STOP | BRAKE | SPEEDING ;
 
+grouping_commands: 'komenda' | 'grupuj' | 'nowa komenda' | 'nowy zestaw' | 'zestaw';
 
 maneuvering_commands : READY | MAINSAIL | FORSAIL | OARS | ANCHOR_0 | HAWSER | HAWSERS_0 | HAWSERS_1 | BOW_0 | LEFT_0 | RIGHT_0 | STERN_0 | RUN_0 | SAILS;
 others : ALARM | LIGHT | LIKE_THAT | SECURE | MAN_0 | LANDING_CREW | ENOUGH_ | BALL | HELMSMAN | PROVIDE | CREW ;

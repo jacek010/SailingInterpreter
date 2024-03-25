@@ -3,6 +3,8 @@ from gen.grammar.SailingCommandsLexer import SailingCommandsLexer
 from gen.grammar.SailingCommandsParser import SailingCommandsParser
 from gen.grammar.SailingCommandsVisitor import SailingCommandsVisitor
 
+group_cnt = 0
+ingroup_cnt = 0
 
 def get_amount(amount: str) -> str:
     match amount:
@@ -35,16 +37,27 @@ def get_stere(stere: str) -> str:
 
 
 class CommandVisitor(SailingCommandsVisitor):
+
     def visitSpeedCommand(self, ctx):
+        global ingroup_cnt
         direction = ctx.direction().getText()
         amount = ctx.speed().getText()
         converted_amount = get_amount(amount)
-        return f"{converted_amount} {direction}"
+        ingroup_cnt = ingroup_cnt+1
+        return f"\t{ingroup_cnt}. - Silnik {converted_amount} {direction}"
 
     def visitStereCommand(self, ctx):
+        global ingroup_cnt
         stere = ctx.stere().getText()
         converted_stere = get_stere(stere)
-        return f"Przekręć ster o {converted_stere}"
+        ingroup_cnt = ingroup_cnt+1
+        return f"\t{ingroup_cnt}. - Przekręć ster o {converted_stere}"
+
+    def visitGroupCommand(self, ctx):
+        global ingroup_cnt, group_cnt
+        ingroup_cnt = 0
+        group_cnt = group_cnt+1
+        return f'\n{group_cnt}. - Nowy zestaw komend:'
 
 
 def main():
@@ -58,7 +71,7 @@ def main():
                 tree = parser.command()
                 visitor = CommandVisitor()
                 commands = visitor.visit(tree)
-                print("Commands:", commands)
+                print(commands)
     except FileNotFoundError:
         return Exception
 
