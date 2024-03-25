@@ -59,6 +59,43 @@ class CommandVisitor(SailingCommandsVisitor):
         group_cnt = group_cnt+1
         return f'\n{group_cnt}. - Nowy zestaw komend:'
 
+    def visitTimeCommand(self, ctx):
+        global ingroup_cnt
+        commands = self.visitChildren(ctx)
+        if commands:
+            print(commands)
+        time_command = ''
+
+        if ctx.TO() is not None:
+            landmark = ctx.landmarks().getText()
+            ingroup_cnt = ingroup_cnt+1
+            time_command = f" - do {landmark}"
+
+        elif ctx.BY() is not None:
+            time_value = ctx.INT().getText() if ctx.INT() else ""
+            time_unit = ctx.time_units().getText()
+
+            time_command = f" - przez {time_value} {time_unit}"
+
+        elif ctx.FOR_NEXT() is not None:
+            time_value = ctx.INT().getText() if ctx.INT() else ''
+            time_unit = ctx.time_units().getText()
+            time_command = f" - na następne {time_value} {time_unit}"
+
+        return time_command
+
+    def visitCommand(self, ctx):
+        command = ''
+        if ctx.speedCommand():
+            command += self.visitSpeedCommand(ctx.speedCommand())
+        if ctx.stereCommand():
+            command += self.visitStereCommand(ctx.stereCommand())
+        if ctx.groupCommand():
+            command += self.visitGroupCommand(ctx.groupCommand())
+        if ctx.timeCommand():
+            command += self.visitTimeCommand(ctx.timeCommand())
+        return command
+
 
 def main():
     try:
@@ -70,7 +107,7 @@ def main():
                 parser = SailingCommandsParser(stream)
                 tree = parser.command()
                 visitor = CommandVisitor()
-                commands = visitor.visit(tree)
+                commands = visitor.visitCommand(tree)
                 print(commands)
     except FileNotFoundError:
         return Exception

@@ -5,9 +5,9 @@ prog: stat* EOF;
 stat: command;
 
 command
-    : ENGINE speedCommand
-    | STERE stereCommand
-    | groupCommand
+    : ENGINE speedCommand timeCommand?
+    | STERE stereCommand timeCommand?
+    | groupCommand timeCommand?
     ;
 
 speedCommand
@@ -23,6 +23,13 @@ groupCommand
     :   grouping_commands
     ;
 
+timeCommand
+    :   TO landmarks
+    |   BY INT? time_units
+    |   FOR_NEXT INT? time_units
+    ;
+
+
 //Kierunek: do przodu - na przód, do tyłu - wstecz
 direction : FORWARD | BACKWARD ;
 
@@ -33,6 +40,10 @@ stere :LEFT | RIGHT | LEFT_FULL | RIGHT_FULL;
 speed :EMERGENCY | FULL | MANEUVERING | HALF | SLOW | STOP | BRAKE | SPEEDING ;
 
 grouping_commands: 'komenda' | 'grupuj' | 'nowa komenda' | 'nowy zestaw' | 'zestaw';
+
+landmarks: NEXT_BUOY;
+
+time_units: 'minut' | 'minuty' | 'minutę' | 'sekund' | 'sekundy' | 'sekundę' | 'godzin' | 'godziny' | 'godzinę';
 
 maneuvering_commands : READY | MAINSAIL | FORSAIL | OARS | ANCHOR_0 | HAWSER | HAWSERS_0 | HAWSERS_1 | BOW_0 | LEFT_0 | RIGHT_0 | STERN_0 | RUN_0 | SAILS;
 others : ALARM | LIGHT | LIKE_THAT | SECURE | MAN_0 | LANDING_CREW | ENOUGH_ | BALL | HELMSMAN | PROVIDE | CREW ;
@@ -46,6 +57,12 @@ LEFT_FULL : 'lewo na burt';
 RIGHT_FULL : 'prawo na burt';
 STERE : 'ster' ;
 
+TO : 'do' ;
+BY : 'przez' ;
+FOR_NEXT : 'na następne';
+
+NEXT_BUOY : 'następnej boji';
+
 // Tokeny
 ALARM : 'alarm' ;
 HALF : 'pół' ;
@@ -55,7 +72,7 @@ BACKWARD : 'wstecz' ;
 READY : 'przygotować' ;
 MAINSAIL : 'grot' ;
 FORSAIL : 'fok' ;
-TO : 'do' ;
+
 CLAR : 'klar' ;
 ANCHOR_0 : 'kotwicę' ;
 ON : 'na' ;
@@ -86,7 +103,7 @@ WIND : 'wiaru' ;
 BOAT : 'łodzi' ;
 HALF_WIND : 'half wind' ;
 ABOW : 'zwrotu' ;
-BY : 'przez' ;
+
 ENOUGH_ : 'dość' ;
 BOW_1 : 'dziobowa' ;
 BOW_0 : 'dziób' ;
@@ -182,7 +199,6 @@ NEWLINE : [\r\n]+ -> channel(HIDDEN);
 WS : [ \t]+ -> channel(HIDDEN) ;
 
 INT     : [0-9]+ ;
-
 
 ID : [a-zA-Z_][a-zA-Z0-9_]* ;
 

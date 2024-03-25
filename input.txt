@@ -1,11 +1,11 @@
-komenda
+komenda na następne 30 minut
 silnik cała wstecz
 silnik wstecz pół
 nowa komenda
 ster lewo
-ster prawo na burt
+ster prawo na burt do następnej boji
 grupuj
-silnik wstecz pół
+silnik wstecz pół przez 25 godzin
 ster prawo na burt
 zestaw
 silnik wstecz pół
