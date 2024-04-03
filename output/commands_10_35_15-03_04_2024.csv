@@ -1,0 +1,13 @@
+COMMAND_GROUP_NR,INGROUP_NR,COMMAND,UNTIL
+1,,, - na następne 30 minut
+,1,Silnik 80% wstecz,
+,2,Silnik 40% wstecz,
+2,,,
+,1,Przekręć ster o -45 stopni,
+,2,Przekręć ster o 90 stopni, - do następnej boji
+3,,,
+,1,Silnik 40% wstecz, - przez 25 godzin
+,2,Przekręć ster o 90 stopni,
+4,,,
+,1,Silnik 40% wstecz,
+,2,Przekręć ster o 90 stopni,
