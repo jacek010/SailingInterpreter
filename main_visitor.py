@@ -121,7 +121,7 @@ class CommandVisitor(SailingCommandsVisitor):
 
 def main():
     try:
-        with open("input.txt", 'r') as file:
+        with open("input.txt", 'r', encoding="utf-8") as file:
             for line in file:
                 input_stream = InputStream(line.strip())
                 lexer = SailingCommandsLexer(input_stream)

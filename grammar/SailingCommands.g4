@@ -198,7 +198,7 @@ NEWLINE : [\r\n]+ -> channel(HIDDEN);
 //WS : [ \t]+ -> skip ;
 WS : [ \t]+ -> channel(HIDDEN) ;
 
-INT     : [0-9]+ ;
+INT : [0-9]+ ;
 
 ID : [a-zA-Z_][a-zA-Z0-9_]* ;
 
