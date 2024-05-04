@@ -1,4 +1,6 @@
-komenda na następne 30 minut
+komenda współrzędne 60 ° 60 ` 60 " N 30 ° 30 ` 30 " E
+silnik stop
+nowa komenda na następne 30 minut
 silnik cała wstecz
 silnik wstecz pół
 nowa komenda

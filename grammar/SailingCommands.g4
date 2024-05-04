@@ -11,8 +11,8 @@ command
     ;
 
 speedCommand
-    :   speed direction
-    |   direction speed
+    :   speed direction?
+    |   direction? speed
     ;
 
 stereCommand
@@ -25,6 +25,7 @@ groupCommand
 
 timeCommand
     :   TO landmarks
+    |   COORDINATES INT coordinate_unit INT coordinate_unit INT coordinate_unit geo_direction INT coordinate_unit INT coordinate_unit INT coordinate_unit geo_direction
     |   BY INT? time_units
     |   FOR_NEXT INT? time_units
     ;
@@ -43,11 +44,17 @@ grouping_commands: 'komenda' | 'grupuj' | 'nowa komenda' | 'nowy zestaw' | 'zest
 
 landmarks: NEXT_BUOY;
 
+coordinate_unit: DEG | MIN | SEC ;
+
+geo_direction: NORTH | EAST;
+
 time_units: 'minut' | 'minuty' | 'minutę' | 'sekund' | 'sekundy' | 'sekundę' | 'godzin' | 'godziny' | 'godzinę';
 
 maneuvering_commands : READY | MAINSAIL | FORSAIL | OARS | ANCHOR_0 | HAWSER | HAWSERS_0 | HAWSERS_1 | BOW_0 | LEFT_0 | RIGHT_0 | STERN_0 | RUN_0 | SAILS;
 others : ALARM | LIGHT | LIKE_THAT | SECURE | MAN_0 | LANDING_CREW | ENOUGH_ | BALL | HELMSMAN | PROVIDE | CREW ;
-prepositions : TO | ON | BY | AND | INTO | FOR ;
+prepositions : TO | ON | BY | AND | INTO | FOR;
+
+
 
 
 //Nowe tokeny
@@ -60,8 +67,15 @@ STERE : 'ster' ;
 TO : 'do' ;
 BY : 'przez' ;
 FOR_NEXT : 'na następne';
+COORDINATES : 'współrzędne';
 
 NEXT_BUOY : 'następnej boji';
+
+DEG : '°';
+MIN : '`';
+SEC : '"';
+NORTH : 'N';
+EAST : 'E';
 
 // Tokeny
 ALARM : 'alarm' ;

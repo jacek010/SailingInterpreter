@@ -51,7 +51,7 @@ class CommandVisitor(SailingCommandsVisitor):
     def visitSpeedCommand(self, ctx):
         global ingroup_cnt
         global df, row_cnt
-        direction = ctx.direction().getText()
+        direction = ctx.direction().getText() if ctx.direction() else ''
         amount = ctx.speed().getText()
         converted_amount = get_amount(amount)
         ingroup_cnt = ingroup_cnt + 1
@@ -87,16 +87,40 @@ class CommandVisitor(SailingCommandsVisitor):
         if ctx.TO() is not None:
             landmark = ctx.landmarks().getText()
             ingroup_cnt = ingroup_cnt + 1
+
             time_command = f" - do {landmark}"
 
+        elif ctx.COORDINATES() is not None:
+            coordinate_value = []
+            coordinate_unit = []
+            geo_direction = []
+            for i in range(6):
+                coordinate_value.append(ctx.INT()[i].getText() if ctx.INT() else '')
+                coordinate_unit.append(ctx.coordinate_unit()[i].getText())
+                if coordinate_unit[i] == '°':
+                    coordinate_unit[i] = 'stopni'
+                elif coordinate_unit[i] == '`':
+                    coordinate_unit[i] = 'minut'
+                elif coordinate_unit[i] == '"':
+                    coordinate_unit[i] = 'sekund'
+
+            for j in range(2):
+                geo_direction.append(ctx.geo_direction()[j].getText())
+                if geo_direction[j] == 'N':
+                    geo_direction[j] = 'północnych'
+                elif geo_direction[j] == 'E':
+                    geo_direction[j] = 'wschodnich'
+
+            time_command = f" - współrzędne {coordinate_value[0]} {coordinate_unit[0]} {coordinate_value[1]} {coordinate_unit[1]} {coordinate_value[2]} {coordinate_unit[2]} {geo_direction[0]} {coordinate_value[3]} {coordinate_unit[3]} {coordinate_value[4]} {coordinate_unit[4]} {coordinate_value[5]} {coordinate_unit[5]} {geo_direction[1]}"
+
         elif ctx.BY() is not None:
-            time_value = ctx.INT().getText() if ctx.INT() else ""
+            time_value = ctx.INT()[0].getText() if ctx.INT() else ''
             time_unit = ctx.time_units().getText()
 
             time_command = f" - przez {time_value} {time_unit}"
 
         elif ctx.FOR_NEXT() is not None:
-            time_value = ctx.INT().getText() if ctx.INT() else ''
+            time_value = ctx.INT()[0].getText() if ctx.INT() else ''
             time_unit = ctx.time_units().getText()
 
             time_command = f" - na następne {time_value} {time_unit}"
